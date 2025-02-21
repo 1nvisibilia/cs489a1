@@ -11,8 +11,9 @@ int main(int argc, char** argv) {
         fprintf(stderr, "Please provide the address of a file as an input.\n");
         return -1;
     }
-    char cmd[BUFSIZE] = "wc -c < \"";
-    strncat(cmd, argv[1], 256 - 9);
-    strncat(cmd, "\"", 2);
+    char sized_input[BUFSIZE - 10];
+    strncpy(sized_input, argv[1], BUFSIZE - 10);
+    char cmd[BUFSIZE];
+    sprintf(cmd, "wc -c < \"%s\"", sized_input);
     system(cmd);
 }
